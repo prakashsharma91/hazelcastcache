@@ -14,7 +14,8 @@ public class HazelCast {
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(false);
-        joinConfig.getKubernetesConfig().setEnabled(true).setProperty("service-name", "hazelcastcache-service");
+        joinConfig.getKubernetesConfig().setEnabled(true).setProperty("service-name", "hazelcastcache-service")
+                .setProperty("namespace", "terra");
         hazelcastInstance = Hazelcast.newHazelcastInstance(config);
     }
 

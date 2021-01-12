@@ -22,7 +22,12 @@ spec:
               memory: "1024Mi"
               cpu: "500m"
           ports:
-            - containerPort: 8080
+            - name: "http"
+              containerPort: 8080
+              protocol: TCP
+            - name: "hz"
+              containerPort: 5701
+              protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -34,5 +39,9 @@ spec:
   selector:
     app: hazelcastcache
   ports:
-    - port: 8080
+    - name: "http"
+      port: 8080
       targetPort: 8080
+    - name: "hz"
+      port: 5701
+      targetPort: 5701
