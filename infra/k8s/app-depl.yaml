@@ -13,10 +13,10 @@ spec:
       labels:
         app: hazelcastcache
     spec:
+      serviceAccountName: hazelcast-service-account
       containers:
         - name: hazelcastcache
           image: prakashsharma91/hazelcastcache
-          serviceAccountName: hazelcast-service-account
           resources:
             limits:
               memory: "1024Mi"
