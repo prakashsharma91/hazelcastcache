@@ -2,6 +2,7 @@ package org.besidescollege.hazelcastcache.controller;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.RestServerEndpointConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
@@ -16,6 +17,10 @@ public class HazelCast {
         joinConfig.getTcpIpConfig().setEnabled(false);
         joinConfig.getKubernetesConfig().setEnabled(true).setProperty("service-name", "hazelcastcache-service")
                 .setProperty("namespace", "terra");
+
+        // enable rest api
+        config.getNetworkConfig().getRestApiConfig().setEnabled(true).enableAllGroups();
+
         hazelcastInstance = Hazelcast.newHazelcastInstance(config);
     }
 
